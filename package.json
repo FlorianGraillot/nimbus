@@ -1,0 +1,32 @@
+{
+  "name": "nimbus",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Nimbus — a Discord-like desktop chat app",
+  "workspaces": [
+    "server",
+    "desktop"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n api,app -c cyan,magenta \"npm:dev:server\" \"npm:dev:desktop\"",
+    "dev:server": "npm run dev -w @nimbus/server",
+    "dev:desktop": "npm run dev -w @nimbus/desktop",
+    "dev:second": "npm run dev:second -w @nimbus/desktop",
+    "build": "npm run build -w @nimbus/server && npm run build -w @nimbus/desktop",
+    "start": "npm run start -w @nimbus/desktop",
+    "typecheck": "npm run typecheck -w @nimbus/server && npm run typecheck -w @nimbus/desktop",
+    "seed": "npm run seed -w @nimbus/server --",
+    "smoke": "node scripts/smoke.mjs",
+    "icons": "node scripts/make-icons.mjs"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.5"
+  },
+  "engines": {
+    "node": ">=20.19"
+  },
+  "allowScripts": {
+    "better-sqlite3@13.0.3": true,
+    "esbuild@0.28.2": true
+  }
+}

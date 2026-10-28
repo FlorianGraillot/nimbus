@@ -1,0 +1,31 @@
+{
+  "name": "@nimbus/desktop",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Nimbus desktop client",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "dev": "concurrently -k -n vite,electron -c blue,green \"vite\" \"wait-on tcp:127.0.0.1:5173 && cross-env NIMBUS_DEV=1 electron .\"",
+    "dev:second": "wait-on tcp:127.0.0.1:5173 && cross-env NIMBUS_DEV=1 electron . --profile=second",
+    "build": "vite build",
+    "start": "cross-env NIMBUS_DEV=0 electron .",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "lucide-react": "^1.61.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "zustand": "^5.0.16"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "concurrently": "^9.2.5",
+    "cross-env": "^10.1.0",
+    "electron": "^45.0.0",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.5",
+    "wait-on": "^9.5.1"
+  }
+}
